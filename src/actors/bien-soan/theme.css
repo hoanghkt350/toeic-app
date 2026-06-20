@@ -1,0 +1,81 @@
+/* TOEIC Content Studio (actor Biên soạn) — CSS variables, scope theo .theme-bien-soan
+   để KHÔNG đè biến của các actor khác. */
+.theme-bien-soan {
+  --t-primary: #1C63EA;
+  --t-primary2: #0D46BA;
+  --t-accent: #0EC59C;
+  --t-purple: #7B3FED;
+  --t-bg: #F3F5FB;
+  --t-white: #ffffff;
+  --t-border: #E0E4F0;
+  --t-text1: #191D2C;
+  --t-text2: #6B728E;
+  --t-text3: #A8AEC2;
+  --t-success: #1EBA7B;
+  --t-warning: #FDB218;
+  --t-danger: #EF4444;
+  --t-sidebar-bg: #121830;
+  --t-tag-blue: #e0eaff;
+  --t-tag-green: #d6f7eb;
+  --t-tag-orange: #fff0d6;
+  --t-tag-purple: #ede0ff;
+  --t-radius: 12px;
+  --t-radius-sm: 8px;
+  --t-shadow: 0 2px 12px rgba(28,99,234,0.07);
+  --t-shadow-md: 0 4px 24px rgba(28,99,234,0.10);
+}
+
+/* Dark mode bật qua body.dark-mode (context.tsx toggle), nhưng chỉ override
+   trong phạm vi actor Biên soạn. */
+body.dark-mode .theme-bien-soan {
+  --t-bg: #0f1117;
+  --t-white: #1a1d2e;
+  --t-border: #2a2d3e;
+  --t-text1: #e8eaf0;
+  --t-text2: #8a90aa;
+  --t-text3: #555a72;
+  --t-sidebar-bg: #0a0c15;
+  --t-tag-blue: #1a2a4a;
+  --t-tag-green: #0d2e1f;
+  --t-tag-orange: #2e1f0a;
+  --t-tag-purple: #1e0f3a;
+}
+
+/* Scrollbar (global, nhẹ — chấp nhận được) */
+.theme-bien-soan ::-webkit-scrollbar { width: 6px; height: 6px; }
+.theme-bien-soan ::-webkit-scrollbar-track { background: transparent; }
+.theme-bien-soan ::-webkit-scrollbar-thumb { background: var(--t-border); border-radius: 10px; }
+
+/* Highlight row */
+.t-highlight-row { background: #fffbea !important; }
+
+/* Toast animation */
+@keyframes t-slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.t-toast-anim { animation: t-slideUp 0.3s ease; }
+
+/* Stat card number animation */
+@keyframes t-countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Progress bar */
+.t-progress-fill { transition: width 0.6s ease; }
+
+/* ===== Layout responsive — sidebar luôn hiện trên desktop, thành drawer trên mobile.
+   (Bản Figma Make export thiếu CSS này nên sidebar bị mất khi chuyển trang.) ===== */
+.theme-bien-soan .bs-sidebar { transform: none; transition: transform 0.3s ease; }
+.theme-bien-soan .bs-main { margin-left: 240px; }
+.theme-bien-soan .mobile-only { display: none; }
+.theme-bien-soan .bs-sidebar-overlay { display: none; }
+
+@media (max-width: 1024px) {
+  .theme-bien-soan .bs-sidebar { transform: translateX(-100%); }
+  .theme-bien-soan .bs-sidebar.bs-sidebar--open { transform: translateX(0); }
+  .theme-bien-soan .bs-main { margin-left: 0; }
+  .theme-bien-soan .mobile-only { display: flex; }
+  .theme-bien-soan .bs-sidebar-overlay { display: block; }
+}

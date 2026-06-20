@@ -1,0 +1,21 @@
+/* Font Inter dùng chung (các actor đều tham chiếu 'Inter') */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===== Tailwind v4 entry (giữ nguyên setup từ các actor Figma Make) ===== */
+@import 'tailwindcss' source(none);
+@source './**/*.{js,ts,jsx,tsx}';
+
+@import 'tw-animate-css';
+
+/* ===== Theme tokens — scope theo từng actor để KHÔNG đè nhau =====
+   Mỗi actor được bọc bởi class .theme-<slug>; biến màu (:root) đã đổi thành
+   selector .theme-<slug> trong các file dưới đây. */
+@import './actors/hoc-sinh/theme.css';
+@import './actors/giao-vien/theme.css';
+@import './actors/admin/theme.css';
+
+/* ===== Trang chọn vai trò ===== */
+html,
+body {
+  margin: 0;
+}
